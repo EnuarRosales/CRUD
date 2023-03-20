@@ -37,7 +37,7 @@ public class PersonaService {
 
     //EDITAR
 
-    public Persona editarPersona(Persona persona){
+    public Persona encontrarPersona(Persona persona){
         return repositori.findById(persona.getId()).orElse(null);
 }
 

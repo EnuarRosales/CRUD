@@ -1,8 +1,8 @@
 package com.example.CRUDemilio.controllers;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
-import com.example.CRUDemilio.entities.ListPersonas;
 import com.example.CRUDemilio.entities.Persona;
 import com.example.CRUDemilio.services.PersonaService;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 public class PersonaController {
+    @Autowired
     PersonaService personaService;
 
 
@@ -35,12 +36,12 @@ public class PersonaController {
     personaService.eliminarPersona(id);
     }
 
-    //EDIATAR
-    @GetMapping("/persona/editar/{id}")
-    public  void editar(Persona persona, Model model){
-        persona = personaService.editarPersona(persona);
-        model.addAttribute("persona",persona);
-
+    //EDITAR
+    @PutMapping("/persona/editar/{id}")
+    public String  editar(@RequestBody Persona persona){
+        persona = personaService.encontrarPersona(persona);
+        //model.addAttribute("persona",persona);
+        return "persona";
 
     }
 
