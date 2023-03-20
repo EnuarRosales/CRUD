@@ -3,15 +3,20 @@ package com.example.CRUDemilio.entities;
 
 import jakarta.persistence.*;
 
+
 @Entity
 @Table(name = "persona")
 public class Persona {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private  long id;
+    private Long id;
+
     private String nombre;
-    private String  apellido;
+
+
+    private String apellido;
+
 
     public Persona() {
     }
@@ -37,4 +42,11 @@ public class Persona {
         this.apellido = apellido;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 }
