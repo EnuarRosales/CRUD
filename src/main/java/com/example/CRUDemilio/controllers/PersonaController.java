@@ -11,13 +11,9 @@ import java.util.List;
 
 @RestController
 public class PersonaController {
+
     @Autowired
     PersonaService personaService;
-
-
-    public PersonaController(PersonaService personaService) {
-        this.personaService = personaService;
-    }
 
 //LISTAMOS TODAS LAS PERSONAS
     @GetMapping("/mostrar")
@@ -26,8 +22,8 @@ public class PersonaController {
     }
 //CREAR PERSONAS
     @PostMapping("/mostrar")
-    public Persona crearPersona(@RequestBody Persona persona) {
-        return this.personaService.crearPersona(persona);
+    public void crearPersona(@RequestBody Persona persona) {
+        personaService.crearPersona(persona);
     }
 
 //ELIMINAR
@@ -38,15 +34,19 @@ public class PersonaController {
 
     //EDITAR
     @PutMapping("/persona/editar/{id}")
-    public String  editar(@RequestBody Persona persona){
+    public Persona editar(Persona persona){
         persona = personaService.encontrarPersona(persona);
-        //model.addAttribute("persona",persona);
-        return "persona";
+        persona.setApellido("prueba");
+        //model.addAttribute("persona", persona);
+        personaService.crearPersona(persona);
+        return persona;
 
     }
 
-
-
+    @PutMapping("/mostrar01")
+    public void editarPersona(@RequestBody Persona persona) {
+        personaService.crearPersona(persona);
+    }
 
 
 }

@@ -2,6 +2,7 @@ package com.example.CRUDemilio.services;
 
 import com.example.CRUDemilio.entities.Persona;
 import com.example.CRUDemilio.respositories.PersonaRepositori;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -12,13 +13,8 @@ import java.util.List;
 @Service
 public class PersonaService {
 
+    @Autowired
     PersonaRepositori repositori;
-
-
-    public PersonaService(PersonaRepositori repositori) {
-        this.repositori = repositori;
-
-    }
 
     //VER
     public List<Persona> getListaPersonas() {
@@ -26,8 +22,8 @@ public class PersonaService {
     }
 
     //CREAR
-    public Persona crearPersona(Persona newPersona) {
-        return this.repositori.save(newPersona);
+    public void crearPersona(Persona persona) {
+        repositori.save(persona);
     }
 
     //ELIMINAR
@@ -40,6 +36,7 @@ public class PersonaService {
     public Persona encontrarPersona(Persona persona){
         return repositori.findById(persona.getId()).orElse(null);
 }
+
 
 
 
